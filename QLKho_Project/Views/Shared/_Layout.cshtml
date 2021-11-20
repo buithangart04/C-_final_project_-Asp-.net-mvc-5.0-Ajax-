@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link href="/Assets/css/style.css" rel="stylesheet" />
+    @RenderSection("linkCss", required: false)
+
+    <title></title>
+</head>
+<body>
+
+    <!------ Include the above in your HEAD tag ---------->
+    <div>
+        <div class="navbar container-fluid">
+
+            <ul>
+                <li>
+                    <a class="nav-link" href="/Home/Index">Trang Chủ  <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hóa Đơn Nhập Hàng
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/HDNhapHang/Index">Tạo Hóa Đơn</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hóa Đơn Bán Hàng
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/HDBanHang/Index">Tạo Hóa Đơn</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Quản Lí Kho
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/HangTonKho/KhaoSattonKho">Tạo Báo Cáo Khảo Sát</a>
+                        <a class="dropdown-item" href="/HangTonKho/Index">Xem Hàng Tồn Kho</a>
+                    </div>
+
+
+
+                </li>
+                <li>
+                    <a class="nav-link" href="/SoGhiNo/ViewSoGhiNo"> Sổ Ghi Nợ  <span class="sr-only">(current)</span></a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#"> Liên Hệ <span class="sr-only">(current)</span></a>
+
+                </li>
+            </ul>
+        </div>
+        <div class="banner">
+
+            <div class="banner_image">
+                <div id="slideshow">
+                    <div class="slide_image">
+                        <img src="/Assets/images/banner5.jpg">
+                    </div>
+                    <div class="slide_image">
+                        <img src="/Assets/images/banner3.jpg">
+                    </div>
+                    <div class="slide_image">
+                        <img src="/Assets/images/banner4.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                @RenderSection("title", required: false)
+            </div>
+            <div class="render_body" style="min-height:500px;">
+                @RenderBody();
+            </div>
+
+        </div>
+        <div class="container-fluid footer text-center">
+            <p>CopyRight By Bùi Đức Thắng</p>
+        </div>
+    </div>
+   
+    <script src="/Scripts/jquery-3.4.1.slim.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    @RenderSection("linkJs", required: false)
+
+</body>
+
+</html>

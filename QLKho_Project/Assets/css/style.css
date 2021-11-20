@@ -1,0 +1,110 @@
+﻿body {
+    font-family: Arial sans-serif 'Times New Roman';
+    height:auto;
+}
+
+.navbar {
+    background-color: #edebeb;
+    width: 100%;
+    position: relative;
+}
+
+    .navbar ul {
+        margin: 0 0 0 auto;
+    }
+
+        .navbar ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+            .navbar ul li a {
+                color: black;
+                font-size: 22px;
+                font-weight: 500;
+            }
+
+.nav-link:hover {
+    color: #34a8eb;
+}
+
+.dropdown-menu {
+    padding: 4px;
+}
+
+    .dropdown-menu :hover {
+        background-color: #34a8eb;
+        color: #ffffff;
+        transition: 0.5s;
+    }
+
+.banner {
+    position: relative;
+    padding: 0px;
+    overflow:hidden;    
+}
+.banner_image {
+    opacity:0.6;
+    width:100%;
+    margin: 15px 0px;
+    position: relative;
+    margin: 0px;
+    height: 350px;
+    background-size: 100% 100%;
+    display: inline-block;
+    overflow: hidden;
+}
+.slide_image{
+    width:100%;
+    height:350px;
+    display:inline-block;
+}
+.slide_image img {
+    width:100%;
+    height: 350px;
+}
+.banner .content {
+    display: inline;
+    position: relative;
+    top: -230px;
+    left: 20rem;
+}
+
+        .banner .content h1 {
+            font-weight: 700;
+            font-family: sans-serif 'Times New Roman';
+            margin-bottom: 20px;
+        }
+
+        .banner .content a {
+            display: inline;
+            margin-left: 2rem;
+            font-weight: 700;
+            font-family: sans-serif 'Times New Roman';
+            font-size: 20px;
+        }
+
+        .banner .content h6 {
+            display: inline;
+            font-family: sans-serif 'Times New Roman';
+            font-size: 20px;
+        }
+.button_submit {
+    float: right;
+    margin: 0.8rem 3rem;
+}
+
+    .button_submit button {
+        height: 50px;
+        font-weight: 600;
+    }
+
+.footer {
+    background-color: #edebeb;
+    height: 75px;
+    line-height: 75px;
+    overflow: hidden;
+    position: fixed;
+    font-weight: 600;
+    font-size: 20px;
+}

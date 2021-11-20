@@ -1,0 +1,100 @@
+﻿@model  PagedList.IPagedList<TraNo>
+@using PagedList.Mvc;
+@using PagedList;
+@using Model.EF;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{
+    <h1>Lịch Sử Giao Dịch </h1>
+    <a href="#">Trang chủ > </a>
+    <h6>Lịch Sử Giao Dịch</h6>
+}
+
+@section linkCss{
+    <link href="/Assets/css/LichSuGiaoDich.css" rel="stylesheet" />
+
+}
+@section linkJs{
+    <script src="/Assets/js/LichSuGiaoDich.js"></script>
+}
+@*lịch sử giao dịch*@
+<div class="container-fluid">
+    <div class="col-md-12">
+        <div class="invoice">
+            <div class="invoice-header">
+                <div class="invoice-to" style="display:inline-block">
+                    <div class="select_SoghiNo" id="select_khachHang">
+                        <address id="info_customer" class="m-t-5 m-b-5">
+                            <br />
+
+                            <strong id="ten_Kh" class="text-inverse">Tên Bên Nợ : @ViewBag.UserInfo.Ten </strong><br><br />
+                            <strong id="dia_chi_Kh" class="text-inverse">Địa chỉ : @ViewBag.UserInfo.DiaChi </strong><br><br />
+                            <strong id="stk_Kh" class="text-inverse">Số tài khoản :@ViewBag.UserInfo.STK </strong><br><br />
+                            <strong id="sdt_tenKh" class="text-inverse">Số điện thoại : @ViewBag.UserInfo.SoDienThoai </strong><br><br />
+                            <strong id="so_no_Kh" class="text-inverse"> Số Nợ : @ViewBag.UserInfo.SoNo </strong>
+
+
+                        </address>
+                    </div>
+
+                    <input id="name_Cus" value="Tên Bên nợ : @ViewBag.UserInfo.Ten" type="hidden" />
+                    <input id="id_cus" value="@ViewBag.UserInfo.Ma" type="hidden" />
+                    <input id="is_cus" value="@ViewBag.isCus" type="hidden" />
+                </div>
+
+
+
+
+            </div>
+            <!-- end invoice-header -->
+            <!-- begin invoice-content -->
+            <div class="invoice-content">
+                <!-- begin table-responsive -->
+                <div class="table_dat table-responsive">
+                    <table class="table table-invoice" id="table_field">
+
+                        <tr>
+
+                            <th>Mã Biên Lai Trả Nợ  </th>
+                            <th width="30%" class="text-center">Tiền Thanh Toán </th>
+                            <th width="30%" class="text-center">Thời Điểm Thanh Toán </th>
+
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="add_row">
+                                <td>@item.Ma </td>
+                                <td class="text-center">  @item.Tien </td>
+                                <td class="text-center"> @item.Ngay </td>
+
+                            </tr>
+                        }
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @id = @ViewBag.UserInfo.Ma, @isCus = ViewBag.isCus }), new PagedListRenderOptions
+               {
+                   UlElementClasses = new string[] { "pagination" },
+                   LiElementClasses = new string[] { "page-item" },
+               })
+
+                </div>
+            </div>
+            <div class="button_submit">
+                <button id="so_ghi_no" type="button" class="btn btn-warning">Quay Lại Sổ Ghi Nợ</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal 1 -->
+
+
+
+
+</div>
+
+
+

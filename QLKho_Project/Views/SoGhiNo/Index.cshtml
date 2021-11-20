@@ -1,0 +1,201 @@
+﻿@model  PagedList.IPagedList<QLKho_Project.Models.KhachHangNoModel>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{
+    <h1>Sổ Ghi Nợ</h1>
+    <a href="#">Trang chủ > </a>
+    <h6>Sổ Ghi Nợ</h6>
+}
+
+@section linkCss{
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="/Assets/css/SoGhiNo.css" rel="stylesheet" />
+
+}
+
+@section linkJs{
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/Scripts/jquery.twbsPagination.min.js"></script>
+    <script src="/Assets/js/SoGhiNo.js"></script>
+}
+
+<div class="container-fluid">
+    <div class="col-md-12">
+        <div class="invoice">
+            <div class="invoice-header">
+                <div class="invoice-to" style="display:inline-block">
+                    <div class="select_SoghiNo" id="select_khachHang">
+                        <address id="info_customer" class="m-t-5 m-b-5">
+                            <br />
+
+                            <strong id="ten_Kh" class="text-inverse">Tên Bên Nợ : @ViewBag.UserInfo.Ten </strong><br><br />
+                            <strong id="dia_chi_Kh" class="text-inverse">Địa chỉ : @ViewBag.UserInfo.DiaChi </strong><br><br />
+                            <strong id="stk_Kh" class="text-inverse">Số tài khoản :@ViewBag.UserInfo.STK </strong><br><br />
+                            <strong id="sdt_tenKh" class="text-inverse">Số điện thoại : @ViewBag.UserInfo.SoDienThoai </strong><br><br />
+                            <strong id="so_no_Kh" class="text-inverse"> Số Nợ : @ViewBag.UserInfo.SoNo </strong>
+
+
+                        </address>
+                    </div>
+
+                    <input id="name_Cus" value="Tên Bên nợ : @ViewBag.UserInfo.Ten" type="hidden" />
+                    <input id="id_cus" value="@ViewBag.UserInfo.Ma" type="hidden" />
+                    <input id="is_cus" value="@ViewBag.isCus" type="hidden" />
+                </div>
+
+                    <button style="float:right;width:120px; font-weight:bold;margin-right:60px;" type="button" id="tao_tra_no" class="btn btn-success">Trả Nợ</button>
+               
+
+            </div>
+            <!-- end invoice-header -->
+            <!-- begin invoice-content -->
+            <div class="invoice-content">
+                <!-- begin table-responsive -->
+                <div class="table_dat table-responsive">
+                    <table class="table table-invoice" id="table_field">
+
+                        <tr>
+                            <th width="5%">Mã Hóa Đơn Nợ  </th>
+                            <th>Mã Hóa Đơn Nhập(Bán) </th>
+                            <th width="10%" class="text-center">Tổng Tiền </th>
+                            <th width="5%" class="text-center">Thanh Toán</th>
+                            <th class="text-center" width="15%">Số Nợ(Dư) Thanh Toán</th>
+                            <th class="text-center" width="15%">Đã Thanh Toán sau</th>
+                            <th class="text-center" width="10%">Còn nợ</th>
+                            <th class="text-center" width="10%">Ngày</th>
+                            <th class="text-center" width="20%">Tùy Chọn</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="add_row">
+                                <td>@item.MaHDNo </td>
+                                <td> @item.MaHDBan </td>
+                                <td class="text-center"> @item.TongTien </td>
+                                <td class="text-center"> @item.ThanhToan </td>
+                                <td class="text-center">@item.SoDu_No  </td>
+                                <td class="text-center"> @item.daThanhToanSau</td>
+                                <td id="tong" class="text-center"> @item.ConNo </td>
+                                <td id="tong" class="text-center">@item.Ngay  </td>
+                                <td class="text-center"><button id="detail_invoice" type="button" class="btn btn-info" width="50%"><i class="fas fa-info-circle"></i> Xem chi tiết hóa đơn </button></td>
+                            </tr>
+                        }
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @id = @ViewBag.UserInfo.Ma, @isCus = ViewBag.isCus }), new PagedListRenderOptions
+               {
+                   UlElementClasses = new string[] { "pagination" },
+                   LiElementClasses = new string[] { "page-item" },
+
+
+
+               })
+                </div>
+            </div>
+            <div class="button_submit">
+                <button id="lich_su_giao_dich" type="button" class="btn btn-warning">Xem Lịch Sử Giao Dịch</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal 1 -->
+    <div class="modal fade" id="detail_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chi tiết hóa đơn </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="invoice-from">
+                        <address class="m-t-5 m-b-5">
+
+
+                            <strong id="TenKh_detail" class="text-inverse">
+
+                            </strong><br>
+
+                            <p id="tongTienHang_detail"></p>
+                            <p id="chietKhau_detail"></p>
+                            <p id="tongTien_detail"></p>
+                            <p id="ThanhToan_detail"></p>
+                            <p id="ngay_detail"></p>
+
+                        </address>
+                    </div>
+                    <div class="table_dat table-responsive">
+                        <table class="table table-invoice" id="table_detail">
+
+                            <tr>
+                                <th width="5%">Mã Sản Phẩm </th>
+                                <th>Tên Sản Phẩm </th>
+                                <th width="25%" class="text-center">Mô Tả</th>
+                                <th width="5%" class="text-center">Số Bao</th>
+                                <th class="text-center" width="5%">Giá</th>
+                                <th class="text-center" width="10%">Tiền</th>
+                            </tr>
+
+
+
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal 2 -->
+    <div class="modal fade" id="TraNo_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Form Trả Nợ(Vay) </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="invoice-from">
+                        <address class="m-t-5 m-b-5">
+
+
+                            <strong id="ten_Kh_TraNo" class="text-inverse">
+
+                            </strong><br>
+
+                            <p id="diachi_No"></p>
+                            <p id="sodienthoai_No"></p>
+                            <p id="sotaikhoan_No"></p>
+                            <p id="sono_No"></p>
+                            <p id="ngay_No"></p>
+
+                        </address>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <label for="tien_tra" style="font-weight:bold;">Nhập số tiền trả :</label>
+                        <input type="number" class="form-control" id="tien_tra" placeholder="Enter number" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Đóng</button>
+                    <button type="button" id="save_tra_no" class="btn btn-success" >Lưu điều chỉnh</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,92 @@
+﻿@using Model.EF
+@model  PagedList.IPagedList<SanPham>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{
+    <h1>Xem Hàng Tồn Kho </h1>
+    <a href="#">Trang chủ > </a>
+    <h6>Xem hàng tồn kho</h6>
+}
+
+@section linkCss{
+    <link href="/Assets/css/HangTonKho.css" rel="stylesheet" />
+
+}
+@section linkJs{
+    <script src="/Assets/js/HangTonKho.js"></script>
+}
+<div class="container-fluid">
+    <div class="invoice-content">
+        <!-- begin table-responsive -->
+        <div class="table_dat table-responsive">
+            <table class="table table-invoice" id="table_field">
+
+                <tr>
+                    <th width="5%">Mã sản phẩm  </th>
+                    <th width="10%">Tên sản phẩm  </th>
+                    <th>Mô tả  </th>
+                    <th width="10%" class="text-center">Số lượng Tồn </th>
+                    <th width="5%" class="text-center">Giá nhập </th>
+                    <th class="text-center" width="10%">Giá bán </th>
+                    <th class="text-center" width="10%">Khối lượng </th>
+                    <th class="text-center" width="10%">Số lượng hỏng </th>
+                    <th class="text-center" width="10%">Tùy Chọn </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+            <tr class="add_row">
+                <td>@item.Ma </td>
+                <td>@item.Ten </td>
+                <td> @item.MoTa </td>
+                <td class="text-center"> @item.SLTon </td>
+                <td class="text-center"> @item.GiaNhap </td>
+                <td class="text-center">@item.GiaBan  </td>
+                <td class="text-center"> @item.KhoiLuong</td>
+                <td class="text-center"> @item.SLHong</td>
+                <td><button class="btn btn-info sua_sl_Hong" id="sua_sl_Hong" type="submit">Thay đổi số lượng hỏng</button></td>
+            </tr>
+                }
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+       {
+           UlElementClasses = new string[] { "pagination" },
+           LiElementClasses = new string[] { "page-item" },
+
+       })
+        </div>
+    </div>
+    <div class="modal fade" id="detail_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thay đổi số lượng hỏng </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="invoice-from">
+                        <address class="m-t-5 m-b-5">
+                      Mã sản phẩm :     <strong id="ma_sp"></strong><br />
+                      Tên sản phẩm :       <strong id="ten_sp"></strong> <br/>
+                       Mô tả :      <p id="mota_sp"></p>
+                            <div class="col-md-8 mb-3">
+                                <label for="validationTooltip01" style="font-weight:bold;">Nhập số lượng sp được xử lí :</label>
+                                <input type="text" class="form-control" id="change_sl_hong" placeholder="Enter number" required>
+                            </div>
+                        </address>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Đóng </button>
+                    <button type="button" id="save_slhong" class="btn btn-success" data-dismiss="modal">Lưu điều chỉnh</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

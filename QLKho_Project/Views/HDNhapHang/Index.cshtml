@@ -1,0 +1,145 @@
+﻿@model QLKho_Project.Models.HdNhapModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{
+    <h1>Tạo Hóa Đơn Nhập Hàng</h1>
+    <a href="#">Trang chủ > </a>
+    <h6>Tạo Hóa Đơn Nhập Hàng</h6>
+}
+
+@section linkCss{
+    <link href="/Assets/css/HDNhapHang.css" rel="stylesheet" />
+
+}
+
+@section linkJs{
+    <script src="/Assets/js/HDNhapHang.js"></script>
+}
+
+<div class="container-fluid">
+    <div class="col-md-12">
+        <div class="invoice">
+            <div class="invoice-header">
+                <div class="invoice-from">
+                    <small>From</small>
+                    <address class="m-t-5 m-b-5">
+                        <p>Chọn Công Ty :</p>
+                        <div class="col-md-3">
+                            <select  class = "select-tag" id="listCT" >
+                                @foreach(var items in @ViewBag.ListCongTy)
+                                {
+                                    <option value="@items.Ma">@items.Ten</option>
+                                }
+                            </select>
+                          
+                        </div>
+                        <strong class="text-inverse">
+
+
+
+
+                        </strong><br>
+                        <p id="address_Ct"></p>
+                        <p id="stk_Ct"></p>
+                        <p id="phone_Ct"></p>
+
+                    </address>
+                </div>
+                <div class="invoice-to">
+                    <small>to</small>
+                    <address class="m-t-5 m-b-5">
+                        <strong class="text-inverse">@ViewBag.TrangTrai.Ten</strong><br>
+                        <br>
+                        <p id="address">@ViewBag.TrangTrai.DiaChi</p>
+                        <p id="stk">@ViewBag.TrangTrai.STK</p>
+                        <p id="phone">@ViewBag.TrangTrai.SoDienThoai</p>
+                    </address>
+                </div>
+                <div class="invoice-date">
+
+                    <div class="date text-inverse m-t-5">  @ViewBag.Today</div>
+
+                </div>
+            </div>
+            <!-- end invoice-header -->
+            <!-- begin invoice-content -->
+            <div class="invoice-content">
+                <div class="input_product">
+                    <div class="choose-product col-md-2  col-sm-2">
+                        <h5>Chọn sản phẩm</h5>
+                        <select class="select-tag" id="selectSp">
+                        </select>
+
+                    </div>
+                    <div class=" choose-product col-md-2 col-sm-2">
+                        <h5>Chọn  số lượng sản phẩm</h5>
+                        <input id="slDat" type="number" required="" />
+                    </div>
+                    <div class="button_add col-md-2 coel-sm-2">
+                        <button id="add_pro" class="btn btn-warning">Thêm Sản Phẩm </button>
+                    </div>
+                </div>
+              
+                <!-- begin table-responsive -->
+                <div class="table_dat table-responsive">
+                    <table class="table table-invoice" id="table_field">
+
+                        <tr>
+                            <th width="5%">Mã Sản Phẩm </th>
+                            <th>Tên Sản Phẩm </th>
+                            <th width="25%" class="text-center">Mô Tả</th>
+                            <th width="5%" class="text-center">Số Bao</th>
+                            <th class="text-center" width="10%">Sản Lượng</th>
+                            <th class="text-center" width="5%">Giá</th>
+                            <th class="text-center" width="10%">Tiền</th>
+                            <th class="text-center" width="25%">Tùy Chọn</th>
+                        </tr>
+
+                      
+
+                    </table>
+                </div>
+                <!-- end table-responsive -->
+                <!-- begin invoice-price -->
+                <div class="invoice-price">
+                    <div class="invoice-price-left">
+                        <div class="invoice-price-row">
+                            <div class="sub-price">
+                                <small>Tổng Tiền Hàng</small>
+                                <span id="tong_tien_hang" class="text-inverse">0 đ</span>
+
+                            </div>
+
+                            <div  class="sub-price">
+                                <small>Tiền Chiết Khấu </small>
+                                <span   class="text-inverse"><input id="tien_chiet_khau"  type="number" value="0"/>đ</span>
+                            </div>
+                            <div  class="sub-price">
+                                <small>Tổng Tiền Thanh Toán</small>
+                                <span  id="tong_tien_thanh_toan" class="text-inverse">0 đ</span>
+                            </div>
+                            <div class="sub-price">
+                                <small>Tiền Thanh Toán</small>
+                                <span class="text-inverse"><input id="tien_thanh_toan" type="number" value="0" />đ</span>
+                                <i  id="icon_Paid" class="fas fa-check-circle" style="display:none;">Đã Thanh Toán</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-price-right">
+                        <small id="text_con_no">Còn Nợ </small> <span id="con_no" class="f-w-600"> 0</span>đ
+                        <input type="hidden" id="con_no_value" value="0" />
+                    </div>
+                </div>
+                <!-- end invoice-price -->
+            </div>
+            <!-- end invoice-content -->
+        </div>
+    </div>
+</div>
+<div class="button_submit">
+    <button id="them_du_lieu" type="button" class="btn btn-info">Lưu Dữ Liệu</button>
+</div>
+
+

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{07705D6F-746A-4DED-B3E4-7DB1A4F41C8C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Dal\BaseDao.cs" />
+    <Compile Include="Dal\ChiTietHDBanDao.cs" />
+    <Compile Include="Dal\ChiTietHDNhapDao.cs" />
+    <Compile Include="Dal\ChiTietKhaoSatDao.cs" />
+    <Compile Include="Dal\CongTyDao.cs" />
+    <Compile Include="Dal\CongTy_HDNoDao.cs" />
+    <Compile Include="Dal\HDBanDao.cs" />
+    <Compile Include="Dal\HDNhapDao.cs" />
+    <Compile Include="Dal\HDNoCongTyDao.cs" />
+    <Compile Include="Dal\HDNoKhachHangDao.cs" />
+    <Compile Include="Dal\KhachHang_HDNoDao.cs" />
+    <Compile Include="Dal\KhachHangDao.cs" />
+    <Compile Include="Dal\KhaoSatDao.cs" />
+    <Compile Include="Dal\SanPhamDao.cs" />
+    <Compile Include="Dal\SoGhiNoDao.cs" />
+    <Compile Include="Dal\TrangTraiDao.cs" />
+    <Compile Include="Dal\TraNoDao.cs" />
+    <Compile Include="EF\ChiTietHDBan.cs" />
+    <Compile Include="EF\ChiTietHDNhap.cs" />
+    <Compile Include="EF\ChiTietKhaoSat.cs" />
+    <Compile Include="EF\CongTy.cs" />
+    <Compile Include="EF\Congty_HDNo.cs" />
+    <Compile Include="EF\HDBan.cs" />
+    <Compile Include="EF\HDNhap.cs" />
+    <Compile Include="EF\HDNoCongTy.cs" />
+    <Compile Include="EF\HDNoKhachHang1.cs" />
+    <Compile Include="EF\KhachHang.cs" />
+    <Compile Include="EF\KhachHang_HDNO.cs" />
+    <Compile Include="EF\KhaoSatKho.cs" />
+    <Compile Include="EF\QLKhoDbContext.cs" />
+    <Compile Include="EF\SanPham.cs" />
+    <Compile Include="EF\TrangTrai.cs" />
+    <Compile Include="EF\TraNo.cs" />
+    <Compile Include="Models\ChangeCongTyModel.cs" />
+    <Compile Include="Models\ChiTietHDModel.cs" />
+    <Compile Include="Models\CongTy_HDNoModel.cs" />
+    <Compile Include="Models\KhachHangModel.cs" />
+    <Compile Include="Models\KhachHangNoModel.cs" />
+    <Compile Include="Models\KhachHang_HDNoModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\PagedList.css" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

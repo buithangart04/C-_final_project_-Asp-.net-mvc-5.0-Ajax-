@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "KhaoSatTonKho";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{
+    <h1>Khảo Sát Tồn Kho </h1>
+    <a href="#">Trang chủ > </a>
+    <h6>Khảo Sát Tồn Kho</h6>
+}
+
+@section linkCss{
+    <link href="/Assets/css/KhaoSatTonKho.css" rel="stylesheet" />
+
+}
+@section linkJs{
+    <script src="/Assets/js/KhaoSatTonKho.js"></script>
+}
+<div style="width:80%;margin:0 auto;">
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationTooltip01" style="font-weight:bold;">Tên người khảo sát :</label>
+            <input type="text" class="form-control" id="ten_nguoi" placeholder="First name" required>
+        </div>
+        <div class="col-md-4 mb-3">
+
+        </div>
+        <div class="col-md-4 mb-3">
+            <strong>Ngày : @ViewBag.Today</strong>
+        </div>
+    </div>
+    <div class="form-row" style="display: flex; align-items: flex-end;">
+        <div class="col-md-6 mb-3">
+            <label for="select_sp" style="font-weight:bold;">Chọn sản Phẩm :</label>
+            <select id="selectSp" class="form-control">
+                @foreach (var item in ViewBag.model)
+                {
+                    <option value="@item.Ma">@item.Ten</option>
+                    
+                }
+            </select>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="sl_hong" style="font-weight:bold;">Số lượng sản phẩm hỏng</label>
+            <input type="number" class="form-control" id="sl_hong" required>
+
+        </div>
+        <div class="col-md-3 mb-3">
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check_xu_li">
+                <label class="form-check-label" for="check_xu_li" style="font-weight:bold;">Đã được xử lí </label>
+            </div>
+        </div>
+
+
+    </div>
+    <label for="ghi_Chu" style="font-weight:bold;">Ghi chú về sản phẩm </label>
+    <div class="form-row" >
+        <textarea id="ghi_Chu" rows="9" cols="70" name="comment" form="usrform"> 
+Nhập văn bản...
+</textarea>
+        <div style="        display: flex;
+        align-items: flex-end;
+        margin-left: 271px;
+"> <button class="btn btn-warning" id="add_pro">Thêm sản phẩm </button></div>
+    </div>
+
+
+</div>
+<div style="width:80%; margin:100px auto;">
+    <div class="invoice-content">
+        <!-- begin table-responsive -->
+        <div class="table_dat table-responsive">
+            <table class="table table-invoice" id="table_field">
+
+                <tr>
+                    <th width="10%">Mã sản phẩm  </th>
+                    <th width="10%">Tên sản phẩm  </th>
+                    <th>Mô tả  </th>
+                    <th width="10%" class="text-center">Số Lượng Hỏng </th>
+                    <th width="10%" class="text-center">Đã được xử lí</th>
+                    <th class="text-center" width="40%">Ghi Chú </th>
+                    </tr>
+
+
+</table>
+        </div>
+
+    </div>
+    <button class="btn btn-info" id="them_du_lieu" type="submit" style="float:right;margin-top:100px; margin-bottom:50px;">Thêm sản phẩm </button>
+</div>
+
+
+
+
+

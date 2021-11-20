@@ -1,0 +1,126 @@
+﻿
+@model QLKho_Project.Models.HdNhapModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{
+    <h1>Sổ Ghi Nợ</h1>
+    <a href="#">Trang chủ > </a>
+    <h6>Sổ Ghi Nợ</h6>
+}
+
+@section linkCss{
+    <link href="/Assets/css/ViewSoGhiNo.css" rel="stylesheet" />
+}
+
+@section linkJs{
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/Scripts/jquery.twbsPagination.min.js"></script>
+    <script src="/Assets/js/ViewSoGhiNo.js"></script>
+}
+
+<div class="container-fluid">
+    <div class="col-md-12">
+        <div class="menu_so_ghi_no">
+            <div class="SoGhiNo_option">
+                <div id="btn"></div>
+                <button class="SoGhiNo_Button" id="SoGhiNo_KhachHang">Xem sổ ghi nợ Khách Hàng</button>
+                <button class="SoGhiNo_Button" id="SoGhiNo_CongTY">Xem sổ ghi nợ Công Ty</button>
+                <input id="is_cus" value="1" type="hidden" />
+            </div>
+            <div id="form_search" class="form-inline my-2 my-lg-0 form_search">
+                <input class="form-control mr-sm-2" id="txtKeyword" name="txtKeyword" type="search" placeholder="gõ từ khóa" aria-label="Search">
+                <button class="btn btn-outline-info my-2 my-sm-0" id="btn_search">Tìm kiếm </button>
+                <div id="result_search"></div>
+            </div>
+        </div>
+
+        <div class="invoice">
+
+            <!-- end invoice-header -->
+            <!-- begin invoice-content -->
+            <div class="invoice-content">
+                <!-- begin table-responsive -->
+                <div class="table_dat table-responsive">
+                    <table class="table table-invoice" id="table_field">
+
+                        <tr>
+                            <th width="10%">Mã Người Nợ </th>
+                            <th class="text-center">Tên Người Nợ </th>
+                            <th width="20%" class="text-center">Địa chỉ </th>
+                            <th width="10%" class="text-center">Số Tài Khoản</th>
+                            <th class="text-center" width="10%">Số điện thoại </th>
+                            <th class="text-center" width="10%">Số Nợ</th>
+                            <th class="text-center" width="20%">Tùy Chọn</th>
+                        </tr>
+
+
+
+                    </table>
+                    <div id="paginationholder">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="detail_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chi tiết hóa đơn </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="invoice-from">
+                        <address class="m-t-5 m-b-5">
+
+
+                            <strong id="TenKh_detail" class="text-inverse">
+
+                            </strong><br>
+
+                            <p id="tongTienHang_detail"></p>
+                            <p id="chietKhau_detail"></p>
+                            <p id="tongTien_detail"></p>
+                            <p id="ThanhToan_detail"></p>
+                            <p id="ngay_detail"></p>
+
+                        </address>
+                    </div>
+                    <div class="table_dat table-responsive">
+                        <table class="table table-invoice" id="table_detail">
+
+                            <tr>
+                                <th width="5%">Mã Sản Phẩm </th>
+                                <th>Tên Sản Phẩm </th>
+                                <th width="25%" class="text-center">Mô Tả</th>
+                                <th width="5%" class="text-center">Số Bao</th>
+                                <th class="text-center" width="5%">Giá</th>
+                                <th class="text-center" width="10%">Tiền</th>
+                            </tr>
+
+
+
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
